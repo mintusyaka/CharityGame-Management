@@ -1,0 +1,48 @@
+﻿@page
+@model CharityGame_Management.Pages.ExecProcedureModel
+@{
+}
+
+
+<h2>Get total score of players characters</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="playerId">Player ID:</label>
+        <input type="number" id="playerId" name="PlayerId" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Execute Procedure</button>
+</form>
+<form method="get" action="/Index">
+    <button type="submit" class="btn btn-primary">Go Back</button>
+</form>
+
+<p>Result String: @TempData["ProcedureResult"]</p>
+
+<div id="playersList">
+    <table class="table table-striped" id="resultTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Strength</th>
+                <th>Speed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in Model.PlayerList)
+            {
+                <tr>
+                    <td>@player.PlayerId</td>
+                    <td>@player.Nickname</td>
+                    <td>@player.Sex</td>
+                    <td>@player.Score</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

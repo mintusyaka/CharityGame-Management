@@ -1,0 +1,82 @@
+﻿@page
+@using CharityGame_Management.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+
+    <div class="container mt-5">
+        <h1>Characters</h1>
+
+        <form method="get" action="/FilterData">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        <form method="get" action="/AddNewRow">
+            <button type="submit" class="btn btn-primary">Add new row</button>
+        </form>
+
+        <form method="get" action="/UpdateRow">
+            <button type="submit" class="btn btn-primary">Update row</button>
+        </form>
+
+        <form method="get" action="/ExecProcedure">
+            <button type="submit" class="btn btn-primary">Execute Procedure</button>
+        </form>
+
+
+        <div id="characterList">
+            <table class="table table-striped" id="resultTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Strength</th>
+                        <th>Speed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var character in Model.Characters.Items)
+                    {
+                        <tr>
+                            <td>@character.CharacterId</td>
+                            <td>@character.Name</td>
+                            <td>@character.Description</td>
+                            <td>@character.Strength</td>
+                            <td>@character.Speed</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <nav>
+            <ul class="pagination">
+                @if (Model.Characters.HasPreviousPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-PageSize="@Model.PageSize">Previous</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= Model.Characters.TotalPages; i++)
+                {
+                    <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                        <a class="page-link" asp-page="./Index" asp-route-PageNumber="@i" asp-route-PageSize="@Model.PageSize">@i</a>
+                    </li>
+                }
+
+                @if (Model.Characters.HasNextPage)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-page="./Index" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-PageSize="@Model.PageSize">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+    </div>
+</div>

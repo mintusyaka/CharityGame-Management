@@ -1,0 +1,40 @@
+﻿@page
+@model CharityGame_Management.Pages.FilterDataModel
+@{
+}
+
+<form method="post">
+    <div>
+        <label for="minStrength">Minimum Strength:</label>
+        <input type="number" id="minStrength" name="MinStrength" />
+    </div>
+    <div>
+        <label for="maxStrength">Maximum Strength:</label>
+        <input type="number" id="maxStrength" name="MaxStrength" />
+    </div>
+    <div>
+        <label for="minSpeed">Minimum Speed:</label>
+        <input type="number" id="minSpeed" name="MinSpeed" />
+    </div>
+    <div>
+        <label for="maxSpeed">Maximum Speed:</label>
+        <input type="number" id="maxSpeed" name="MaxSpeed" />
+    </div>
+    <div>
+        <label>Sort Option:</label><br />
+
+        <!-- Radio button for Don't Sort -->
+        <input type="radio" id="dontSort" name="SortOption" value="dontSort" checked />
+        <label for="dontSort">Don't Sort</label><br />
+
+        <!-- Radio button for Sort Ascending -->
+        <input type="radio" id="sortAscending" name="SortOption" value="sortAscending" />
+        <label for="sortAscending">Sort Ascending</label><br />
+
+        <!-- Radio button for Sort Descending -->
+        <input type="radio" id="sortDescending" name="SortOption" value="sortDescending" />
+        <label for="sortDescending">Sort Descending</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Confirm Filters</button>
+</form>
